@@ -23,7 +23,7 @@ module.exports = {
         "no-prototype-builtins": "off",
         "guard-for-in": "error",
         "id-match": "error",
-        "max-classes-per-file": ["error", 1],
+        //"max-classes-per-file": ["error", 1],
         "no-bitwise": "error",
         "no-caller": "error",
         "no-duplicate-imports": "error",
@@ -41,7 +41,7 @@ module.exports = {
         // ESLINT-PLUGIN-IMPORT
         // https://github.com/benmosher/eslint-plugin-import/tree/master/docs/rules
         "import/no-unresolved": "off",
-        "import/no-default-export": "error",
+        //"import/no-default-export": "error",
         "import/order": [
             "error",
             {
