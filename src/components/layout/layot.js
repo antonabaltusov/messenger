@@ -1,25 +1,26 @@
-import React from "react"
-import styled from 'styled-components'
-import {Header} from "./header"
+import PropTypes from "prop-types"
+import React, { Component } from "react"
+import styles from "./layout.module.css"
 
+export class Layout extends Component {
+  static propTypes = {
+    header: PropTypes.node.isRequired,
+    chats: PropTypes.node.isRequired,
+    children: PropTypes.node,
+  }
 
-const Layout_div = styled.div`
-    display: flex;
-    flex-direction: column;
-`
+  render() {
+    const { header, chats, children } = this.props
 
-const Main = styled.div`
-    display: flex;
-`
-
-export const Layout = ({chatList, messageField}) => {
     return (
-        <Layout_div>
-            <Header/>
-            <Main>
-                {chatList}
-                {messageField}
-            </Main>
-        </Layout_div>
+      <div className={styles.body}>
+        <div className={styles.header}>{header}</div>
+
+        <div className={styles.content}>
+          <div className={styles.chats}>{chats}</div>
+          <div className={styles.messages}>{children}</div>
+        </div>
+      </div>
     )
+  }
 }
