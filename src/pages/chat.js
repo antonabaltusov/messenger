@@ -28,25 +28,21 @@ export class Chat extends Component {
   render() {
     return (
       <Switch>
-        <Route path={["/chat/:roomId", "/chat"]}>
+        <Route path={["/chat/:id", "/chat"]}>
           {(params) => (
-            <MessageProvider {...params}>
-              {([state, actions]) => {
-                return (
-                  <Layout
-                    header={<Header />}
-                    chats={<ChatList {...params} {...state} />}
-                  >
-                    <Route path="/chat/:roomId">
-                      <MessageField {...state} {...actions} />
-                    </Route>
-                    <Route exact={true} path="/chat">
-                      <MessagesNotFound />
-                    </Route>
-                  </Layout>
-                )
-              }}
-            </MessageProvider>
+            <>
+              <Layout
+                header={<Header />}
+                chats={<ChatList {...params}/>}
+              >
+                <Route path="/chat/:id">
+                  <MessageField {...params}/>
+                </Route>
+                <Route exact={true} path="/chat">
+                  <MessagesNotFound />
+                </Route>
+              </Layout>
+            </>
           )}
         </Route>
         <Route
