@@ -1,4 +1,4 @@
-import { MESSAGE_SEND, DELETE_ROOM } from "./types"
+import { MESSAGE_SEND } from "./types"
 
 const initialState = {
     room1:[
@@ -10,8 +10,10 @@ const initialState = {
   //const removeProperty = prop => ({ [prop]: _, ...rest }) => rest
 
   export const messagesReducer = (state = initialState, { type, payload }) => {
+    console.log(4);
     switch (type) {
       case MESSAGE_SEND:
+        console.log(payload);
         return {
           ...state,
           [payload.room]: [

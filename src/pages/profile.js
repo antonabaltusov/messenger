@@ -1,20 +1,12 @@
 import React, { Component } from "react"
-import { Switch, Route } from "react-router-dom"
-import {
-  Layout,
-  Header,
-  ChatList,
-  MessageField,
-  MessagesNotFound,
-  MessageProvider,
-} from "../components"
+import { Header, Profile } from "../components"
 
-export class Profile extends Component{
+export class ProfilePage extends Component{
     render(){
         return(
             <>
                 <Header/>
-                <h1>Profil</h1>
+                <Profile/>
             </>
         )
     }

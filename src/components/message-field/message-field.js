@@ -22,7 +22,6 @@ export class MessageFieldView extends Component {
     ref = createRef()
 
     handleChangeInput = (event) => {
-        console.log(1)
         const { changeValue, match } = this.props
         const { id } = match.params
 

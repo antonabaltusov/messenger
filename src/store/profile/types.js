@@ -1,0 +1,1 @@
+export const CHANGE_STATUS_PROFILE = "@profile/change-status";
