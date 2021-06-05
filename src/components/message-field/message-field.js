@@ -1,7 +1,9 @@
 import { Input, InputAdornment, withStyles } from '@material-ui/core';
 import {Send} from '@material-ui/icons';
-import classnames from "classnames"
+//import classnames from "classnames"
 import React, {Component, createRef} from "react"
+import { connect } from "react-redux"
+import { sendMessage, changeValue } from "../../store"
 import {Message} from "./message"
 import styles from "./message-field.module.css"
 import { MessagesNotFound } from "./messages-not-found"
@@ -16,11 +18,15 @@ const StyledInput = withStyles(() =>({
     },
 }))(Input)
 
-export class MessageField extends Component {
+export class MessageFieldView extends Component {
     ref = createRef()
 
-    handleChangeInput = (e) => {
-        this.props.handleChangeValue(e)
+    handleChangeInput = (event) => {
+        console.log(1)
+        const { changeValue, match } = this.props
+        const { id } = match.params
+
+        changeValue(id, event?.target.value || "")
     }
 
     handlePressInput = ({code}) => {
@@ -30,9 +36,12 @@ export class MessageField extends Component {
     }
     
     handleSendMessage = () => {
-        const { sendMessage, value } = this.props
-    
-        sendMessage({ author: "User", message: value })
+        const { sendMessage, value, match } = this.props
+        const { id } = match.params
+
+        sendMessage({ author: "User", message: value, room: id })
+
+        this.handleChangeInput()
     }
 
     
@@ -69,18 +78,39 @@ export class MessageField extends Component {
                     placeholder="введите сообщение..." 
                     fullWidth={true} 
                     endAdornment={
-                    <InputAdornment position="end">
-                        {value && (
-                            <Send 
-                            onClick={() => this.sendMessage({author:"user", value }) } 
-                            className={classnames(styles.icon)}
-                            />
-                        )}
-                    </InputAdornment>}
+                        value && (
+                            <InputAdornment position="end">
+                                <Send 
+                                onClick={this.handleSendMessage} 
+                                className={styles.icon}
+                                />
+                            </InputAdornment>
+                        )
+                    }
                 />
             </>
         )
     }
 };
 
+const mapStateToProps = (state, props) => {
+    const { id } = props.match.params
   
+    return {
+      messages: state.messagesReducer[id] || [],
+      value:
+        state.conversationsReducer.find(
+          (conversation) => conversation.title === id,
+        )?.value || "",
+    }
+} 
+
+const mapDispachToProps = (dispatch) => ({
+    sendMessage: (params) => dispatch(sendMessage(params)),
+    changeValue: (id, value) => dispatch(changeValue(id, value)),
+})
+  
+export const MessageField = connect(
+    mapStateToProps,
+    mapDispachToProps,
+)(MessageFieldView)

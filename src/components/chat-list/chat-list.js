@@ -1,41 +1,49 @@
 import { List, Button} from "@material-ui/core"
 import React, { Component } from "react"
+import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 import {Chat} from "./chat"
 
 
-export class ChatList extends Component {
+export class ChatListView extends Component {
+
+
 
     render() {
         const {
             conversations,
-            allMessages,
-            match: { params },
-            addNewChat
+            match,
+            messages
           } = this.props
       
-          const chatId = params.roomId
+          const {id} = match.params
 
         return (
           <>
-            <Button variant="contained" color="primary" onClick={addNewChat}>новая беседа</Button>
             <List component="nav">
               {conversations.map((chat) => {
-                const currentMessage = allMessages[chat.title]
-      
+                const msg = messages[chat.title] || []
+
                 return (
-                  console.log(currentMessage),
                   <Link key={chat.title} to={`/chat/${chat.title}`}>
                     <Chat
-                      selected={chat.title === chatId}
+                      selected={chat.title === id}
                       chat={chat}
-                      lastMessage={currentMessage[currentMessage.length - 1]}
+                      lastMessage={msg[msg.length - 1]}
                     />
                   </Link>
                 )
               })}
             </List>
+            {/* <Button variant="contained" fullWidth={true} color="primary" onClick={addNewChat}>новая беседа</Button> */}
           </>
         )
     }
 }
+
+const mapStateToProps = (state) => ({
+  conversations: state.conversationsReducer,
+  messages: state.messagesReducer,
+})
+
+export const ChatList = connect(mapStateToProps, null)(ChatListView)

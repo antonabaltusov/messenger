@@ -8,7 +8,9 @@ export const addConversation = (contact, hasConversation) => {
 }
 
 export const changeValue = (id, value) => {
+    console.log({id, value});
     return {
+        
         type: CHANGE_VALUE,
         payload: {id, value},
     }

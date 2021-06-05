@@ -5,8 +5,7 @@ import {
   Header,
   ChatList,
   MessageField,
-  MessagesNotFound,
-  MessageProvider,
+  MessagesNotFound
 } from "../components"
 
 export class Chat extends Component {

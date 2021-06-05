@@ -14,8 +14,8 @@ const initialState = {
       case MESSAGE_SEND:
         return {
           ...state,
-          [payload.roomId]: [
-            ...(state[payload.id] || []),
+          [payload.room]: [
+            ...(state[payload.room] || []),
             {
               author: payload.author,
               message: payload.message,

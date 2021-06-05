@@ -14,7 +14,7 @@ export const conversationsReducer = (
             return [...state, { title: payload, value: "" }]
         case CHANGE_VALUE:
             return state.map((room) =>
-                room.title === room.id ? {...room, value: payload.value}:room,
+                room.title === payload.id ? {...room, value: payload.value}:room,
             )
         case DELETE_VALUE:
             return [...state.splice(payload.id, 1)]
