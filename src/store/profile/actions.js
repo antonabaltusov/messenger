@@ -1,9 +1,17 @@
-import { CHANGE_STATUS_PROFILE } from "./types"
+import { CHANGE_STATUS_PROFILE, CHANGE_NAME } from "./types"
 
-export const changeStatus = (param) => {
-    console.log(param);
+export const changeStatus = (bool) => {
+    console.log(bool);
     return {
         type: CHANGE_STATUS_PROFILE,
-        payload: param,
+        payload: bool,
+    }
+}
+
+export const changeName = (name) => {
+    console.log(name);
+    return {
+        type: CHANGE_NAME,
+        payload: name,
     }
 }

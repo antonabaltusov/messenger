@@ -9,7 +9,8 @@ const initialState = {
 
   //const removeProperty = prop => ({ [prop]: _, ...rest }) => rest
 
-  export const messagesReducer = (state = initialState, { type, payload }) => {
+  export const messagesReducer = (state = initialState, { type, payload }
+    ) => {
     switch (type) {
       case MESSAGE_SEND:
         console.log(payload);

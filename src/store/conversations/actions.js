@@ -1,9 +1,10 @@
 import { ADD_CONVERSATION, CHANGE_VALUE, DELETE_VALUE } from "./types"
 
-export const addConversation = (contact, hasConversation) => {
+export const addChat = (name) => {
+    console.log(name);
     return {
-        type: hasConversation ? null : ADD_CONVERSATION,
-        payload: contact,
+        type: ADD_CONVERSATION,
+        payload: name,
     }
 }
 
