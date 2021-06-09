@@ -26,7 +26,7 @@ export class ChatListView extends Component {
   }
 
   onAddChat = () => {
-    addChat(this.state.newChatName);
+    this.props.addChat(this.state.newChatName);
     this.setState({newChatName: ""});
     this.handleClose();
   };

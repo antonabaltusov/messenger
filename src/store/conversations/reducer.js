@@ -1,9 +1,6 @@
-import { ADD_CONVERSATION, CHANGE_VALUE, DELETE_VALUE } from "./types"
+import { ADD_CONVERSATION, CHANGE_VALUE, DELETE_CHAT } from "./types"
 
-const initialState = [
-    { title: "room1", value: "" },
-    // { title: "room2", value: "" },
-]
+const initialState = []
 
 export const conversationsReducer = ( state = initialState, {type, payload},
     ) => {
@@ -15,8 +12,8 @@ export const conversationsReducer = ( state = initialState, {type, payload},
             return state.map((room) =>
                 room.title === payload.id ? {...room, value: payload.value}:room,
             )
-        case DELETE_VALUE:
-            return [...state.splice(payload.id, 1)]
+        case DELETE_CHAT:
+            return [...state.filter(chat => chat.title !== payload)]
         default:
             return state
         
