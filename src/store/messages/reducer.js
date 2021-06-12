@@ -1,11 +1,6 @@
 import { MESSAGE_SEND, DELETE_MESSAGES } from "./types"
 
-const initialState = {
-    room1:[
-        {author:"User", message:"hi bot", date: new Date()},
-        {author:"bot", message:"hi, i'm bot", date: new Date()},
-    ],
-  }
+const initialState = {}
 
  // const removeProperty = prop => ({ [prop]: _, ...rest }) => rest
 
@@ -18,7 +13,13 @@ const initialState = {
 //    }
 //   }
 
-// const removeProperty = prop => ({ [prop]: _, ...rest }) => rest
+// const removeProperty = (prop, state) => { 
+//   const { prop, ...withoutFirst } = state;
+//   console.log(prop, withoutFirst)
+//   return withoutFirst
+// }
+
+
 
   export const messagesReducer = (state = initialState, { type, payload }
     ) => {
@@ -37,7 +38,8 @@ const initialState = {
           ],
         }
       case DELETE_MESSAGES:
-        return _.omit({name: 'moe', age: 50, userid: 'moe1'}, 'userid');
+        return {...state,
+        [payload]:undefined}
       default:
         return state
     }

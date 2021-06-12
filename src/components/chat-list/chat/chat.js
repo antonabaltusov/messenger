@@ -43,9 +43,9 @@ export class ChatView extends Component {
 
     handleDeleteChat = () =>{
       const {chat} = this.props
-      const { title } = chat
-      this.props.deleteChat(title)
-      this.props.deleteMessages(title)
+      const { id } = chat
+      this.props.deleteChat(id)
+      this.props.deleteMessages(id)
     }
 
     render() {

@@ -8,11 +8,10 @@ export const sendMessage = (params) => {
   }
 }
 
-export const deleteMessages = (tittle) => {
-  console.log(tittle)
+export const deleteMessages = (id) => {
   return {
     type: DELETE_MESSAGES,
-    payload: tittle,
+    payload: id,
   }
 }
 // @TODO сделать екшен удаления комнаты

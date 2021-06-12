@@ -26,7 +26,9 @@ export class ChatListView extends Component {
   }
 
   onAddChat = () => {
-    this.props.addChat(this.state.newChatName);
+    const tittle  =this.state.newChatName;
+    const id  = String(+new Date());
+    this.props.addChat({tittle, id});
     this.setState({newChatName: ""});
     this.handleClose();
   };
@@ -40,17 +42,18 @@ export class ChatListView extends Component {
           } = this.props
       
           const {id} = match.params
+          console.log(match);
 
         return (
           <>
             <List component="nav">
               {conversations.map((chat) => {
-                const msg = messages[chat.title] || []
+                const msg = messages[chat.id] || []
 
                 return (
-                  <Link key={chat.title} to={`/chat/${chat.title}`}>
+                  <Link key={chat.id} to={`/chat/${chat.id}`}>
                     <Chat
-                      selected={chat.title === id}
+                      selected={chat.id === id}
                       chat={chat}
                       lastMessage={msg[msg.length - 1]}
                     />

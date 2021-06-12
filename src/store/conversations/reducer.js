@@ -6,14 +6,13 @@ export const conversationsReducer = ( state = initialState, {type, payload},
     ) => {
     switch(type) {
         case ADD_CONVERSATION:
-            console.log(payload);
-            return [...state, { title: payload, value: "" }]
+            return [...state, {id:payload.id, title: payload.tittle, value: "" }]
         case CHANGE_VALUE:
             return state.map((room) =>
-                room.title === payload.id ? {...room, value: payload.value}:room,
+                room.id === payload.id ? {...room, value: payload.value}:room,
             )
         case DELETE_CHAT:
-            return [...state.filter(chat => chat.title !== payload)]
+            return [...state.filter(chat => chat.id !== payload)]
         default:
             return state
         
