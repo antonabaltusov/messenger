@@ -1,0 +1,86 @@
+import { Input, InputAdornment, withStyles } from '@material-ui/core';
+import {Send} from '@material-ui/icons';
+import classnames from "classnames"
+import React, {Component, createRef} from "react"
+import {Message} from "./message"
+import styles from "./message-field.module.css"
+import { MessagesNotFound } from "./messages-not-found"
+
+const StyledInput = withStyles(() =>({
+    root:{
+        "&":{
+            color: "#9a9fa1",
+            padding: "10px 15px",
+            fontSize: "15px",
+        },
+    },
+}))(Input)
+
+export class MessageField extends Component {
+    ref = createRef()
+
+    handleChangeInput = (e) => {
+        this.props.handleChangeValue(e)
+    }
+
+    handlePressInput = ({code}) => {
+        if (code === "Enter") {
+            this.handleSendMessage()
+          }
+    }
+    
+    handleSendMessage = () => {
+        const { sendMessage, value } = this.props
+    
+        sendMessage({ author: "User", message: value })
+    }
+
+    
+
+    handleScrollBottom = () => {
+        if (this.ref.current) {
+          this.ref.current.scrollTo(0, this.ref.current.scrollHeight)
+        }
+      }
+    
+    componentDidUpdate() {
+        this.handleScrollBottom()
+    }
+
+    render(){
+        const {messages, value} = this.props
+
+        return (
+            <>
+                <div ref={this.ref}>
+                    {!messages.length ? (
+                        <MessagesNotFound />
+                    ) : (
+                        messages.map((message, index) => (
+                            <Message message={message} key={index} />
+                        ))
+                    )}
+                </div>
+
+                <StyledInput 
+                    value = {value}
+                    onChange={this.handleChangeInput}  
+                    onKeyPress={this.handlePressInput}
+                    placeholder="введите сообщение..." 
+                    fullWidth={true} 
+                    endAdornment={
+                    <InputAdornment position="end">
+                        {value && (
+                            <Send 
+                            onClick={() => this.sendMessage({author:"user", value }) } 
+                            className={classnames(styles.icon)}
+                            />
+                        )}
+                    </InputAdornment>}
+                />
+            </>
+        )
+    }
+};
+
+  
