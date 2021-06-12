@@ -7,7 +7,7 @@ export class Header extends React.Component {
         return(
             <div className={styles.header}>
                 <Link className={styles.link} to={"/profile"} >Профиль</Link>
-                {/* <Link className={styles.link}>Новости</Link> */}
+                <Link className={styles.link} to={"/gists"}>Gists</Link>
                 <Link className={styles.link} to={"/chat"} >Сообщения</Link>
             </div>
         )
