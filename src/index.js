@@ -1,38 +1,19 @@
+import "./index.css"
 import React from "react"
 import ReactDOM from "react-dom"
+import { Provider } from "react-redux"
+import {BrowserRouter, Switch, Route} from "react-router-dom"
+import {Chat, ProfilePage} from "./pages"
+import { store } from "./store"
 
-const messages = ["test1"]
-
-const sendMessage = () => {
-  messages.push("Нормально!")
-  render()
-}
-
-const Message = ({ message }) => {
-  return (
-    <React.Fragment>
-      <h1>{message}</h1>
-      <p>&quot;qwd&quot;</p>
-    </React.Fragment>
-  )
-}
-
-const MessageField = ({ messages }) => {
-  return (
-    <>
-      <button onClick={sendMessage}>send</button>
-      {messages.map((message, index) => (
-        <Message message={message} key={index} isVisible={true} />
-      ))}
-    </>
-  )
-}
-
-const render = () => {
-  ReactDOM.render(
-    <MessageField messages={messages} />,
-    document.getElementById("root"),
-  )
-}
-render()
-
+ReactDOM.render(
+    <BrowserRouter>
+      <Provider store={store}>
+        <Switch>
+          <Route path="/chat" component={(props) => <Chat {...props} />} />
+          <Route path="/profile" component={(props) => <ProfilePage {...props} />} />
+          <Route path="*" component={() => <h1>404</h1>} />
+        </Switch>
+      </Provider>
+    </BrowserRouter>, 
+document.getElementById("root"))
