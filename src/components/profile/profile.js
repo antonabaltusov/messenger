@@ -15,7 +15,6 @@ export class ProfileView extends Component {
 
     handleChange = (e) => {
         this.setState({value: e.target.value});
-        console.log(e.target.value)
     }
 
     handleChangeName = () => {

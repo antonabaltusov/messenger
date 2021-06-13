@@ -1,6 +1,6 @@
 import { GET_GISTS_FAILURE, GET_GISTS_START, GET_GISTS_SUCCESS } from "./types";
 
-export const getGistsRequest = () => ({
+export const getGistsStart = () => ({
     type: GET_GISTS_START,
   });
   
