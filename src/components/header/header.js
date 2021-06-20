@@ -1,20 +1,14 @@
-import { Button, withStyles } from '@material-ui/core'
 import React from "react"
+import { Link } from "react-router-dom"
 import styles from "./header.module.css"
-
-const StyledButton = withStyles(() =>({
-    root:{
-        margin: '0 5px 0 5px'
-    },
-}))(Button)
 
 export class Header extends React.Component {
     render(){
         return(
             <div className={styles.header}>
-                <StyledButton href="/profile" variant="contained" color="primary">Профиль</StyledButton>
-                <StyledButton variant="contained" color="primary">Новости</StyledButton>
-                <StyledButton href="/chat" variant="contained" color="primary">Сообщения</StyledButton>
+                <Link className={styles.link} to={"/profile"} >Профиль</Link>
+                {/* <Link className={styles.link}>Новости</Link> */}
+                <Link className={styles.link} to={"/chat"} >Сообщения</Link>
             </div>
         )
     }

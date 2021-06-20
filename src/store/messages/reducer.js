@@ -1,13 +1,25 @@
-import { MESSAGE_SEND } from "./types"
+import { MESSAGE_SEND, DELETE_MESSAGES } from "./types"
 
-const initialState = {
-    room1:[
-        {author:"User", message:"hi bot", date: new Date()},
-        {author:"bot", message:"hi, i'm bot", date: new Date()},
-    ],
-  }
+const initialState = {}
 
-  //const removeProperty = prop => ({ [prop]: _, ...rest }) => rest
+ // const removeProperty = prop => ({ [prop]: _, ...rest }) => rest
+
+//  function removeProperty(obj, prop) {
+//   if(prop in obj){
+//     delete obj[prop];
+//     return true;
+//   }else{
+//     return false;
+//    }
+//   }
+
+// const removeProperty = (prop, state) => { 
+//   const { prop, ...withoutFirst } = state;
+//   console.log(prop, withoutFirst)
+//   return withoutFirst
+// }
+
+
 
   export const messagesReducer = (state = initialState, { type, payload }
     ) => {
@@ -25,8 +37,9 @@ const initialState = {
             },
           ],
         }
-    //   case DELETE_ROOM:
-    //     return payload.roomId => ({ [payload.roomId]: _, ...state }) => state
+      case DELETE_MESSAGES:
+        return {...state,
+        [payload]:undefined}
       default:
         return state
     }
