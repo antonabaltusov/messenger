@@ -24,6 +24,7 @@ export class MessageFieldView extends Component {
     handleChangeInput = (event) => {
         const { changeValue, match } = this.props
         const { id } = match.params
+        console.log(id)
 
         changeValue(id, event?.target.value || "")
     }
@@ -57,6 +58,7 @@ export class MessageFieldView extends Component {
 
     render(){
         const {messages, value} = this.props
+        console.log(this.props)
 
         return (
             <>
@@ -94,12 +96,13 @@ export class MessageFieldView extends Component {
 
 const mapStateToProps = (state, props) => {
     const { id } = props.match.params
+    console.log(id)
   
     return {
       messages: state.messagesReducer[id] || [],
       value:
         state.conversationsReducer.find(
-          (conversation) => conversation.title === id,
+          (conversation) => conversation.id === id,
         )?.value || "",
     }
 } 

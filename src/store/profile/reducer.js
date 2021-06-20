@@ -6,7 +6,6 @@ const initialState = {
 }
 
 export const profileReducer = ( state = initialState, {type, payload}) => {
-    console.log(1);
     switch(type) {
         case CHANGE_STATUS_PROFILE:
             console.log(2);

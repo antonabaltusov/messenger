@@ -1,10 +1,10 @@
-import { ADD_CONVERSATION, CHANGE_VALUE, DELETE_VALUE } from "./types"
+import { ADD_CONVERSATION, CHANGE_VALUE, DELETE_CHAT } from "./types"
 
-export const addChat = (name) => {
-    console.log(name);
+export const addChat = (param) => {
+    console.log(param);
     return {
         type: ADD_CONVERSATION,
-        payload: name,
+        payload: param,
     }
 }
 
@@ -17,9 +17,9 @@ export const changeValue = (id, value) => {
     }
 }
 
-export const deleteConversation = (id) => {
+export const deleteChat = (id) => {
     return {
-      type: DELETE_VALUE,
+      type: DELETE_CHAT,
       payload: id,
     }
   }
