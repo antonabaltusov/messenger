@@ -7,7 +7,7 @@ export const conversationsReducer = ( state = initialState, {type, payload},
     switch(type) {
         case ADD_CONVERSATION:
             return [...state, {id:payload.id, title: payload.tittle, value: "" }]
-        case CHANGE_VALUE:
+        case CHANGE_VALUE: 
             return state.map((room) =>
                 room.id === payload.id ? {...room, value: payload.value}:room,
             )
